@@ -1,0 +1,19 @@
+- insert:
+    - id: clustr-trading-console
+      name: '@clustrai/trading-console'
+      config:
+        okxProfile: demo
+        readOnly: true
+        allowUserExecutionUnlock: true
+        maxExecutionUnlockMinutes: 480
+        useSystemProxy: true
+        modules:
+          - market
+          - account
+          - spot
+          - swap
+        watchlist:
+          - BTC-USDT
+          - ETH-USDT
+          - BTC-USDT-SWAP
+          - ETH-USDT-SWAP

@@ -1,0 +1,105 @@
+{
+  "name": "@clustrai/trading-console",
+  "version": "0.7.1",
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "license": "Apache-2.0",
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "ai-trading",
+    "crypto",
+    "okx",
+    "binance",
+    "bybit",
+    "hyperliquid"
+  ],
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "description": "Clustr Trading Console for DeepSeek Harness: secure, multi-exchange tools and an AI trader cockpit.",
+  "homepage": "https://github.com/0xEryx/clustr-trading-console#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xEryx/clustr-trading-console.git"
+  },
+  "bugs": {
+    "url": "https://github.com/0xEryx/clustr-trading-console/issues"
+  },
+  "main": "./src/index.js",
+  "bin": {
+    "clustr-console": "bin/clustr-console.js"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./agent-prompt": "./src/agent-prompt.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node ./scripts/build-client.mjs",
+    "test": "node --test",
+    "test:native-vault": "node ./scripts/native-vault-smoke.mjs",
+    "verify:syntax": "node --check src/index.js && node --check src/analysis.js && node --check src/session-tape.js && node --check src/client/console.js && node --check src/client/hero.js && node --check src/client/experience.js && node --check src/account-adapters.js && node --check src/binance-execution.js && node --check src/bybit-mcp.js && node --check src/order-routing.js && node --check src/trading-workspace.js && node --check src/operating-core.js && node --check src/risk.js && node --check src/vault.js && node --check src/vault-backends.js && node --check src/credential-index.js && node --check src/preset-installer.js && node --check bin/clustr-console.js",
+    "verify": "pnpm run build && pnpm run verify:syntax && pnpm test && node ./scripts/release-gate.mjs",
+    "release:check": "pnpm run verify && npm pack --dry-run",
+    "prepack": "pnpm run build && node ./scripts/release-gate.mjs"
+  },
+  "dependencies": {
+    "@okx_ai/okx-trade-mcp": "1.4.2",
+    "bybit-official-trading-server": "2.1.18",
+    "undici": "8.10.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "ogl": "1.0.11",
+    "react-icons": "5.7.0"
+  },
+  "files": [
+    "bin/clustr-console.js",
+    "src/*.js",
+    "lib/client.js",
+    "presets/crypto-trader",
+    "scripts/keychain-helper.swift",
+    "scripts/windows-credential-helper.ps1",
+    "cordis.patch.yml",
+    "README.md",
+    "INSTALLATION.md",
+    "SECURITY.md",
+    "PLATFORM_SUPPORT.md",
+    "CLUST_TRADING_CONSOLE_PRODUCT_MANUAL_ZH.md",
+    "ANALYSIS_METHODS.md",
+    "CHANGELOG.md",
+    "RELEASING.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-api-remotes",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-input-trigger",
+        "@deepseek-ai/dsh-client-ui-tool",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  }
+}

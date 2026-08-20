@@ -1,0 +1,29 @@
+# Clustr Trading Console keeps a deliberately small, stable agent surface.
+# Exchange adapters and deterministic safety controls stay on the host; this
+# preset contributes the trading identity/runtime and bounded compaction.
+- id: clustr-agent-prompt
+  name: '@clustrai/trading-console/agent-prompt'
+
+- id: compaction
+  name: cordis:group
+  group: true
+  isolate:
+    compaction: true
+    toolResultPruner: true
+  config:
+    - id: compaction-basic
+      name: '@deepseek-ai/dsh-compaction-basic'
+      config:
+        thresholdRatio: 0.55
+        retainRatio: 0.22
+        maxTokens: 6144
+
+    - id: command-compact
+      name: '@deepseek-ai/dsh-command-compact'
+
+    - id: tool-result-pruner
+      name: '@deepseek-ai/dsh-compaction-tool-result-pruner'
+      config:
+        thresholdChars: 6144
+        headChars: 4096
+        tailChars: 1024
