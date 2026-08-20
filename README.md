@@ -1,11 +1,30 @@
-# Clustr Trading Console
+<p align="center">
+  <img src="./docs/assets/readme-hero.svg" alt="Clustr Trading Console — AI Trader Operating System" width="100%" />
+</p>
 
-**The AI trader operating console for DeepSeek Harness.**
+<p align="center">
+  <a href="https://www.npmjs.com/package/@clustrai/trading-console"><img src="https://img.shields.io/npm/v/@clustrai/trading-console?style=flat-square&color=8f7cf5&label=npm" alt="npm version" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-8f7cf5?style=flat-square" alt="Apache 2.0 license" /></a>
+  <img src="https://img.shields.io/badge/Node.js-22.19%2B-59c995?style=flat-square" alt="Node.js 22.19 or newer" />
+  <img src="https://img.shields.io/badge/macOS%20%7C%20Windows%20%7C%20Linux-supported-7f7891?style=flat-square" alt="macOS, Windows, and Linux" />
+</p>
 
-Clustr Trading Console turns a trading request into a traceable workflow: collect current market and account evidence, run user-selected analysis, apply deterministic risk rules, request approval for a write, submit through the selected exchange adapter, reconcile the resulting order state, and record the outcome in Session Tape.
+<p align="center">
+  <strong>AI 交易员的全能终端。</strong><br />
+  统一市场、账户、决策与风控，让复杂交易清晰可控。
+</p>
 
-[![npm](https://img.shields.io/npm/v/@clustrai/trading-console?label=npm)](https://www.npmjs.com/package/@clustrai/trading-console)
-[![license](https://img.shields.io/badge/license-Apache--2.0-6f5cff)](./LICENSE)
+<p align="center">
+  <a href="#install-in-one-command">Install</a> ·
+  <a href="./INSTALLATION.md">First-use guide</a> ·
+  <a href="./CLUST_TRADING_CONSOLE_PRODUCT_MANUAL_ZH.md">产品手册</a> ·
+  <a href="./ANALYSIS_METHODS.md">Analysis library</a> ·
+  <a href="./SECURITY.md">Security</a>
+</p>
+
+---
+
+Clustr Trading Console is the AI trader operating system for DeepSeek Harness. It turns a trading request into a traceable workflow: collect current market and account evidence, run user-selected analysis, apply deterministic risk rules, request approval for a write, submit through the selected exchange adapter, reconcile the resulting order state, and record the outcome in Session Tape.
 
 ## Install in one command
 
@@ -27,11 +46,22 @@ The installer supports macOS, Windows 10/11, and Linux desktop with the same npm
 
 ## Why Clustr
 
-- **Trading-aware context:** market structure, account state, positions, risk boundaries, and order status are presented as separate facts.
-- **User-activated analysis:** twelve analysis systems run only when selected and always include evidence, counter-evidence, key levels, and invalidation conditions.
-- **Controlled execution:** exchange/account scope, fresh data, risk permits, single-use approval, stable client order IDs, and timeout reconciliation sit between model intent and an exchange write.
-- **Session Tape:** trading instructions, decision nodes, response time, order state, and verified slippage are recorded in a redacted, standardized timeline.
-- **Local credential custody:** exchange secrets stay in macOS Keychain, Windows Credential Manager, or Linux Secret Service and never return to the browser after saving.
+<table>
+  <tr>
+    <td width="33%" valign="top"><strong>◈ Trading-aware context</strong><br /><sub>Market structure, account state, positions, risk boundaries, and order status remain separate, timestamped facts.</sub></td>
+    <td width="33%" valign="top"><strong>⌁ User-activated analysis</strong><br /><sub>Twelve analysis systems return evidence, counter-evidence, key levels, events, and invalidation conditions.</sub></td>
+    <td width="33%" valign="top"><strong>◇ Controlled execution</strong><br /><sub>Fresh data, exact account scope, deterministic risk permits, single-use approval, and timeout reconciliation guard every write.</sub></td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top"><strong>▤ Session Tape</strong><br /><sub>Trading instructions, decision nodes, response time, order state, and verified slippage form a standardized replay.</sub></td>
+    <td width="33%" valign="top"><strong>⌾ Local credential custody</strong><br /><sub>Secrets stay in macOS Keychain, Windows Credential Manager, or Linux Secret Service and never return to the browser.</sub></td>
+    <td width="33%" valign="top"><strong>↯ Fast-path runtime</strong><br /><sub>Intent-specific reasoning and compact market packets reduce unnecessary model work without weakening deterministic controls.</sub></td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="./docs/assets/decision-chain.svg" alt="Clustr decision chain: intent, evidence, deterministic risk, approval, exchange, and Session Tape" width="100%" />
+</p>
 
 ## Activation and isolation
 
@@ -75,10 +105,10 @@ For exchange API keys, start with read-only access. If execution is required, en
 
 | Exchange | Account connection | Private account reading | Trade execution |
 | --- | --- | --- | --- |
-| OKX | API key, secret, passphrase; multiple named profiles | Balances and positions | OKX Agent Trade Kit behind a time-bounded user unlock, risk permit, scoped autonomy, and Harness one-time approval |
-| Binance | API key and secret; multiple named profiles | Spot balances plus USDⓈ-M account and positions | Signed official Spot and USDⓈ-M REST endpoints behind exact-account authorization, exchange filters, fresh data, risk permits, one-time approval, stable client IDs, and timeout reconciliation |
-| Bybit | API key and secret; multiple named Live or Testnet profiles | Unified wallet, open orders, and common linear/inverse positions through V5 | Pinned official Bybit Trading MCP behind exact-account authorization, official Linear pre-check, fresh same-environment data, risk permits, one-time approval, stable order-link IDs, and realtime/history reconciliation |
-| Hyperliquid | Not available | Not available | Public market data remains available; account connection and execution are not exposed in this release |
+| <img src="./src/client/assets/okx-wordmark.svg" alt="OKX" height="18" /> | API key, secret, passphrase; multiple named profiles | Balances and positions | OKX Agent Trade Kit behind a time-bounded user unlock, risk permit, scoped autonomy, and Harness one-time approval |
+| <img src="./src/client/assets/binance-wordmark.png" alt="Binance" height="18" /> | API key and secret; multiple named profiles | Spot balances plus USDⓈ-M account and positions | Signed official Spot and USDⓈ-M REST endpoints behind exact-account authorization, exchange filters, fresh data, risk permits, one-time approval, stable client IDs, and timeout reconciliation |
+| <img src="./src/client/assets/bybit-wordmark.svg" alt="Bybit" height="18" /> | API key and secret; multiple named Live or Testnet profiles | Unified wallet, open orders, and common linear/inverse positions through V5 | Pinned official Bybit Trading MCP behind exact-account authorization, official Linear pre-check, fresh same-environment data, risk permits, one-time approval, stable order-link IDs, and realtime/history reconciliation |
+| <img src="./src/client/assets/hyperliquid-wordmark.svg" alt="Hyperliquid" height="18" /> | Not available | Not available | Public market data remains available; account connection and execution are not exposed in this release |
 
 The Exchanges surface represents account connectivity, not a claim about where chart data is sourced. Market venue is selected separately in the instrument search. Account material saved, account readable, and execution enabled are distinct states. Hyperliquid account connection is not available, and Clustr never asks for a Hyperliquid private key or seed phrase.
 
